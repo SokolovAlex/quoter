@@ -7,7 +7,7 @@
         <hr>
         <div class="row" v-for="registration in registrations">
             <h4>{{ registration.name }}</h4>
-            <span @click="unregister(registration)">(Unregister)</span>
+            <span @click="unregister(reguserRegisteredistration)">(Unregister)</span>
             <div class="date">{{ registration.date }}</div>
         </div>
     </div>

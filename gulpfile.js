@@ -5,6 +5,8 @@ const argv = require('optimist').argv;
 const webpack = require("webpack");
 const webpackConfig = require("./webpack.config");
 
+require("./tasks/styles");
+
 const options = {
     watch: "w" in argv
 };
@@ -29,6 +31,6 @@ gulp.task("webpack", (next) => {
     });
 });
 
-gulp.task('default', ['webpack', 'watch', 'start']);
+gulp.task('default', ['webpack', 'watch', 'start', 'styles']);
 
 gulp.task('server', ['start']);

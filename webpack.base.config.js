@@ -46,6 +46,6 @@ module.exports = {
             compress: { warnings: false }
         })
     ] : [
-        new FriendlyErrorsPlugin()
+        //new FriendlyErrorsPlugin()
     ]
 }
