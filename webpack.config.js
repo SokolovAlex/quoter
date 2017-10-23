@@ -14,7 +14,7 @@ const config = merge(base, {
         vendor: './client/src/vendor.js'
     },
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, './public'),
         filename: '[name].js'
     },
     plugins: [

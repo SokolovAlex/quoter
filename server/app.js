@@ -5,14 +5,14 @@ const config = require('./config.json');
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(__dirname + '/../dist'));
+app.use(express.static(__dirname + '/../public'));
 
 const api = require('./api/quotes');
 
 app.use('/api/quotes', api(app));
 
 app.use('/', (req, res, next) => {
-    return res.sendFile(path.resolve(__dirname + '/../dist/index.html'));
+    return res.sendFile(path.resolve(__dirname + '/../public/index.html'));
 });
 
 const port = config.port;
