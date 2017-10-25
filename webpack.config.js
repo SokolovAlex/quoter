@@ -7,7 +7,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const isProd = process.env.NODE_ENV === 'production'
 
 const config = merge(base, {
-    watch: true,
     devtool: isProd ? false : '#cheap-module-source-map',
     entry: {
         app: './client/src/entry.js',

@@ -1,11 +1,11 @@
 <template>
     <section class="section section--menu">
-        <nav class="menu menu--miranda">
+        <nav class="menu menu--francisco">
             <ul class="menu__list">
-                <li v-for="route in routes">
-                    <router-link :to="route.link" class="menu__link"
-                        v-bind:class="{'menu__item--current' : $route.path === route.link}">
-                        {{ route.text }}
+                <li v-for="route in routes" class="menu__item"
+                    v-bind:class="{'menu__item--current' : $route.path === route.link}">
+                    <router-link :to="route.link" class="menu__link">
+                        <span class="menu__helper">{{ route.text }}</span>
                     </router-link>
                 </li>
             </ul>
@@ -38,9 +38,6 @@
                 }, {
                     text: "все",
                     link: "/all"
-                }, {
-                    text: "вход",
-                    link: "/signin"
                 }]
             }
         },

@@ -1,9 +1,15 @@
 const gulp = require('gulp');
 const concat = require('gulp-concat');
+var stylus = require('gulp-stylus');
 
 gulp.task("styles", (next) => {
-    return gulp.src('./client/src/**/*.css')
+    return gulp.src('./client/src/**/*.stylus')
         //.on("data", (f) => { console.log(f); })
+        .pipe(stylus())
         .pipe(concat("styles.css"))
         .pipe(gulp.dest('./public/styles'));
+});
+
+gulp.task("styles:watch", (next) => {
+    return gulp.watch('./client/src/**/*.stylus', ["styles"]);
 });

@@ -1,17 +1,16 @@
 <template>
     <div class="container">
-        <h2>Цитатник</h2>
+        <q-header></q-header>
+        
+        <q-menu></q-menu>
 
-        <MainMenu></MainMenu>
-
-        <div>
-            <router-view></router-view>
-        </div>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-import MainMenu from './components/MainMenu/MainMenu.vue';
+import Menu from './components/menu/menu.vue';
+import Header from './components/header/header.vue';
 
 export default {
     data() {
@@ -26,7 +25,8 @@ export default {
      
     },
     components: {
-        MainMenu
+        "q-menu": Menu,
+        "q-header": Header
     }
 }
 </script>

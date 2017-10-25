@@ -1,0 +1,23 @@
+body
+  font-family: 'Oswald', sans-serif;
+  //font-family: 'Lobster', cursive;
+  background: url(../images/4.jpg) //4 8 16
+
+.container
+  max-width: 1040px
+
+a
+  text-decoration: none;
+  color: #4e3c3e;
+  outline: none;
+
+  &:hover
+    text-decoration: none;
+
+
+.q-title
+  font-size: 28px
+
+.margin-y
+  &-sm
+    margin: 20px 0

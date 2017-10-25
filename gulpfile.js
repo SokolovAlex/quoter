@@ -6,6 +6,7 @@ const webpack = require("webpack");
 const webpackConfig = require("./webpack.config");
 
 require("./tasks/styles");
+require("./tasks/copy");
 
 const options = {
     watch: "w" in argv
@@ -15,7 +16,7 @@ gulp.task("start", () => {
     return server.run(['server/app.js']);
 });
 
-gulp.task("watch", (next) => {
+gulp.task("watch:server", (next) => {
     gulp.watch('server/**/*.js', ['start']);
     next();
 });
@@ -31,6 +32,10 @@ gulp.task("webpack", (next) => {
     });
 });
 
-gulp.task('default', ['webpack', 'watch', 'start', 'styles']);
+gulp.task('default', ['webpack', 'start', 'copy:images', 'styles']);
+
+gulp.task('css', ['default', 'styles:watch']);
+
+gulp.task('dev', ['default', 'watch:server']);
 
 gulp.task('server', ['start']);

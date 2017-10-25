@@ -30,6 +30,7 @@
         "css-loader": "^0.28.7",
         "friendly-errors-webpack-plugin": "^1.6.1",
         "gulp-concat": "^2.6.1",
+        "gulp-stylus": "^2.6.0",
         "gulp-util": "^3.0.8",
         "optimist": "^0.6.1",
         "vue-loader": "^13.0.4",
