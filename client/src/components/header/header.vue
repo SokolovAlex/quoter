@@ -1,16 +1,16 @@
 <template>
     <div class="header margin-y-sm">
-        <h2 class="q-title q-start">Цитатник</h2>
-        <div class="sign-in q-end"><a href="#"> Вход </a></div>
+        <h2 class="q-title">Цитатник</h2>
+        <div class="sign-in" @click="signin()"><a href="#">Вход</a></div>
     </div>
 </template>
 
 <script>
     export default {
-        methods: { }
+        methods: {
+            signin() {
+                this.$store.dispatch('openSignIn');
+            }
+        }
     }
 </script>
-
-<style scoped>
-    
-</style>

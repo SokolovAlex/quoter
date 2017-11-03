@@ -32,9 +32,11 @@ gulp.task("webpack", (next) => {
     });
 });
 
-gulp.task('default', ['webpack', 'start', 'copy:images', 'styles']);
+gulp.task('default', ['webpack', 'start', 'copy:images', 'copy:fonts', 'styles']);
 
-gulp.task('css', ['default', 'styles:watch']);
+gulp.task('css', ['styles', 'styles:vendor']);
+
+gulp.task('css:watch', ['css', 'styles:watch']);
 
 gulp.task('dev', ['default', 'watch:server']);
 
