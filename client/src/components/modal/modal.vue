@@ -5,6 +5,7 @@
             <div class="modal-container">
 
                 <div class="close-icon">
+                    
                     <i class="fa fa-times" @click="$emit('close')"></i>
                 </div>
 
