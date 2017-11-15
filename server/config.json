@@ -1,4 +1,29 @@
 {
     "port": 5555,
-    "domain": "http://localhost"
+    "domain": "http://localhost",
+    "auth": {
+        "google": {
+            "clientID": "564377722563-ujva8g9vnhl07j2s200qqo2acmfle84t.apps.googleusercontent.com",
+            "clientSecret": "pn9Qr_e0V5pelNRL8nLDE2WY",
+            "callbackURL": "http://localhost:5555/auth/google/callback"
+        }
+    },
+    "db": {
+        "name": "quoters",
+        "user": "postgres",
+        "password": "Xx102030",
+        "port": "5432",
+        "options": {
+            "host": "localhost",
+            "dialect": "postgres",
+            "logging": false,
+            "operatorsAliases": false,
+            "pool": {
+                "max": 5,
+                "min": 0,
+                "acquire": 30000,
+                "idle": 10000
+            }
+        }
+    }
 }

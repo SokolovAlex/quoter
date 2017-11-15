@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import api from '../../api/signin'
 
+const location = window.location;
+
 const types = {
     SIGN_IN: 'SIGN_IN',
     SIGN_IN_SUCCESS: 'SIGN_IN_SUCCESS',
@@ -35,6 +37,12 @@ const actions = {
     },
     openSignUp({ commit }) {
         return commit('OPEN_SIGNUP');
+    },
+    signIn() {
+        api.signIn().then().catch();
+    },
+    signUp() {
+        api.signUp().then().catch();
     }
 }
 

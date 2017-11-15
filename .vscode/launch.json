@@ -1,0 +1,30 @@
+{
+    // Используйте IntelliSense, чтобы узнать о возможных атрибутах отладки Node.js.
+    // Наведите указатель мыши, чтобы просмотреть описания существующих атрибутов.
+    // Для получения дополнительной информации посетите: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [{
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceRoot}/server/app.js"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Gulp task",
+            "program": "${workspaceRoot}/node_modules/gulp/bin/gulp.js",
+            "args": [
+                "task"
+            ]
+        },
+        {
+            "name": "Launch via NPM",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/server/app",
+            "runtimeExecutable": "node",
+            "port": 9229
+        }
+    ]
+}

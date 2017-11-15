@@ -1,19 +1,35 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
+const session = require('express-session');
+
+const boot = require('./boot');
 const config = require('./config.json');
+const api = require('./api/quotes');
+const auth = require('./api/auth');
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(__dirname + '/../public'));
-app.use(express.static(__dirname + '/node_modules'));
+app.set('view engine', 'pug');
+app.set('views', './public/views')
 
-const api = require('./api/quotes');
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(session({ secret: 'SECRET' }));
+app.use(express.static(__dirname + '/../public'));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+boot(app, passport);
+
+auth(app)
 
 app.use('/api/quotes', api(app));
 
 app.use('/', (req, res, next) => {
-    return res.sendFile(path.resolve(__dirname + '/../public/index.html'));
+    return res.render('main', { user: req.isAuthenticated() ? req.user : null });
 });
 
 const port = config.port;
