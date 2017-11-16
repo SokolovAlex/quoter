@@ -1,5 +1,6 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const VKontakteStrategy = require('passport-vkontakte').Strategy;
 const config = require('../config');
 const db = require('../db');
 
@@ -18,26 +19,47 @@ module.exports = (app) => {
         });
     });
 
+    passport.use(new VKontakteStrategy(
+        config.auth.vk,
+        function(accessToken, refreshToken, profile, next) {
+            User.findOne({ where: { vkid: new String(profile.id) } })
+                .then((user) => {
+                    if (user) {
+                        return next(null, user.dataValues);
+                    }
+                    User.create({
+                            vkid: profile.id,
+                            email: profile.email || '',
+                            name: profile.displayName,
+                            vkToken: accessToken,
+                            avatar: profile.photos[0].value
+                        })
+                        .then((result) => next(null, result))
+                        .catch(next);
+                })
+                .catch(next);
+        }
+    ));
+
     passport.use(new GoogleStrategy(
 
         config.auth.google,
 
         function(accessToken, refreshToken, profile, done) {
-            User.findOne({ where: { googleid: profile.id } }).then(function(user) {
-                if (user) {
-                    return done(null, user.dataValues);
-                } else {
+            User.findOne({ where: { googleid: profile.id } })
+                .then((user) => {
+                    if (user) {
+                        return done(null, user.dataValues);
+                    }
                     User.create({
-                        googleid: profile.id,
-                        email: profile.emails[0].value,
-                        name: profile.displayName,
-                        googleToken: accessToken,
-                        avatar: profile.photos[0].value
-                    }, (err, result) => {
-                        if (err) done(err);
-                        return done(null, result);
-                    });
-                }
-            });
+                            googleid: profile.id,
+                            email: profile.emails[0].value,
+                            name: profile.displayName,
+                            googleToken: accessToken,
+                            avatar: profile.photos[0].value
+                        })
+                        .then((result) => done(null, result))
+                        .catch(done);
+                });
         }));
 };

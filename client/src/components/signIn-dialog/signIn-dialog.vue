@@ -91,7 +91,7 @@
                 this.$store.dispatch('signUp');
             },
             signInVk() {
-                this.$store.dispatch('signInVk');
+                window.location.assign("/auth/vkontakte");
             },
             signInGoogle() {
                 window.location.assign("/auth/google");

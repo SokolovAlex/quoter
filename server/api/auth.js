@@ -1,6 +1,15 @@
 const passport = require('passport');
 
 module.exports = (app) => {
+    const redirects = {
+        successRedirect: '/',
+        failureRedirect: '/'
+    };
+
+    const redirectFunction = (req, res) => {
+        res.redirect('/');
+    };
+
     // GET /auth/google
     //   Use passport.authenticate() as route middleware to authenticate the
     //   request.  The first step in Google authentication will involve
@@ -14,13 +23,18 @@ module.exports = (app) => {
     //   login page.  Otherwise, the primary route function function will be called,
     //   which, in this example, will redirect the user to the home page.
     app.get('/auth/google/callback',
-        passport.authenticate('google', {
-            successRedirect: '/',
-            failureRedirect: '/'
-        }),
-        function(req, res) {
-            res.redirect('/');
-        });
+        passport.authenticate('google', redirects),
+        redirectFunction
+    );
+
+
+    //This function will pass callback, scope and request new token
+    app.get('/auth/vkontakte', passport.authenticate('vkontakte'));
+
+    app.get('/auth/vkontakte/callback',
+        passport.authenticate('vkontakte', redirects),
+        redirectFunction
+    );
 
     app.get('/logout', function(req, res) {
         req.logout();
